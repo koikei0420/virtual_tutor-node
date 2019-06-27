@@ -14,7 +14,7 @@
             <v-card-text>{{ questionCreatedAt }}</v-card-text>
           </v-card>
         </v-flex>
-        <v-flex xs6>
+        <v-flex xs12 md6>
           <v-subheader>Input</v-subheader>
           <form @submit.prevent="saveAnswer">
             <v-card>
@@ -28,7 +28,7 @@
             <v-btn :to="{name: 'questions'}">Cancel</v-btn>
           </form>
         </v-flex>
-        <v-flex xs6>
+        <v-flex xs12 md6>
           <v-subheader>Preview</v-subheader>
           <v-card>
             <v-card-title>

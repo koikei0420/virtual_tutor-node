@@ -28,8 +28,11 @@ export const saveAnswer = async function(answer, questionID) {
   const resp = await fetch(`http://localhost:3001/api/questions/${questionID}/answers`, {
     method: 'post',
     body: JSON.stringify(answer),
+    mode: 'cors',
+    credentials: 'include',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
     }
   });
   return resp.json();
