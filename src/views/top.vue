@@ -6,9 +6,9 @@
           <v-flex xs12 ma-2 v-for="question of questions" :key="question.id">
             <v-card>
               <v-card-title primary-title>
-                <h4 class="headline mb-0">{{ question.body }}</h4>
-                <p class="headline mb-0">{{ question.created_at }}</p>
+                <vue-mathjax :formula="question.body"></vue-mathjax>
               </v-card-title>
+              <v-card-text>{{ question.created_at }}</v-card-text>
             </v-card>
           </v-flex>
         </v-layout>
