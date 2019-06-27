@@ -14,9 +14,19 @@ export default new Router({
       component: Top
     },
     {
-      path: '/input_question',
-      name: 'input_question',
+      path: '/questions/input',
+      name: 'questions_input',
       component: () => import('./views/input.vue')
+    },
+    {
+      path: '/questions/:id',
+      name: 'questions',
+      component: () => import('./views/question_detail.vue')
+    },
+    {
+      path: '/questions/:id/answer',
+      name: 'answer_input',
+      component: () => import('./views/input_answer.vue')
     }
   ]
 })

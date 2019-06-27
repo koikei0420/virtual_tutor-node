@@ -19,18 +19,18 @@ export const saveQuestion = async function(question) {
   return resp.json();
 };
 
-// export const getPage = async function(storyId, pageId) {
-//   const resp = await fetch(`/api/stories/${storyId}/pages/${pageId}`);
-//   return resp.json();
-// };
+export const getAnswers = async function(questionID) {
+  const resp = await fetch(`http://localhost:3001/api/questions/${questionID}`);
+  return resp.json();
+};
 
-// export const savePage = async function(storyId, parentId, name, text) {
-//   const resp = await fetch(`/api/stories/${storyId}/pages/${parentId}/next`, {
-//     method: 'post',
-//     body: JSON.stringify({ name, text }),
-//     headers: {
-//       'Content-Type': 'application/json'
-//     }
-//   });
-//   return resp.json();
-// };
+export const saveAnswer = async function(answer, questionID) {
+  const resp = await fetch(`http://localhost:3001/api/questions/${questionID}/answers`, {
+    method: 'post',
+    body: JSON.stringify(answer),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  return resp.json();
+};

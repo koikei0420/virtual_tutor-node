@@ -4,7 +4,7 @@
       <v-flex xs12>
         <v-layout row wrap fill-height justify-space-around>
           <v-flex xs12 ma-2 v-for="question of questions" :key="question.id">
-            <v-card>
+            <v-card :to="{ name: 'questions', params: { id : question.id }}">
               <v-card-title primary-title>
                 <vue-mathjax :formula="question.body"></vue-mathjax>
               </v-card-title>
