@@ -13,7 +13,7 @@
             </v-card-title>
             <v-card-text>{{ questionCreatedAt }}</v-card-text>
           </v-card>
-          <v-btn :to="{ name: 'answer_input' }">Answer</v-btn>
+          <v-btn :to="{ name: 'answer_input' }" dark color="indigo">Answer</v-btn>
         </v-flex>
         <v-flex xs11 ma-4 v-for="answer of answers" :key="answer.id">
           <v-card>
