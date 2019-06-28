@@ -19,9 +19,6 @@
               type="submit" 
               dark 
               color="indigo"
-              :loading="loading"
-              :disabled="loading"
-              @click="loader = 'loading'"
             >Submit</v-btn>
             <v-btn :to="{name: 'top'}">Cancel</v-btn>
           </form>
