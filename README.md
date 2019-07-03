@@ -1,29 +1,10 @@
-# virtual_tutor
+## Usage
 
-## Project setup
+### サーバー側
+`port 3001` で起動してください
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+bundle exec rails s -p 3001
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### クライアント側
+defaultの　`port 8080` でOK
