@@ -21,7 +21,7 @@ defaultの　`port 8080` でOK
 ### クライアント側
 
 - `localhost:8080/` : top page
-- `localhost:8080/questions` : 質問入力画面
+- `localhost:8080/questions/input` : 質問入力画面
 - `localhost:8080/questions/:id` : 質問(id=:id)の詳細画面
 - `localhost:8080/questions/:id/answer` : 質問(id=:id)に対する回答入力画面
 
