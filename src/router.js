@@ -27,6 +27,11 @@ export default new Router({
       path: '/questions/:id/answer',
       name: 'answer_input',
       component: () => import('./views/input_answer.vue')
-    }
+    },
+    {
+      path: '/handwrite',
+      name: 'handwrite',
+      component: () => import('./views/handwrite.vue')
+    },
   ]
 })
