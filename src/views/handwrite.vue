@@ -7,68 +7,69 @@
     <v-flex
       xs12 md9
     >
-      <v-card
-        v-if="$vuetify.breakpoint.smAndDown"
-        height="500"
-        class="ma-3 pa-6"
-        outlined
-        tile
-        justify-center
-      >
       <v-layout justify-center>
-        <Canvas />
+        <Canvas
+          :brushColor="brushColor"
+          :brushSize="brushSize"
+          :mode="mode"
+          ref="Canvas"
+        />
       </v-layout>
-      </v-card>
-      <v-card
-        v-if="$vuetify.breakpoint.mdAndUp"
-        max-width="1600"
-        height="450"
-        class="ma-3 pa-6"
-        outlined
-        tile
-        justify-center
-      >
-      <v-layout justify-center>
-        <Canvas />
-      </v-layout>
-      </v-card>
     </v-flex>
     <v-flex
       xs12 md3
-      align-content-center
+      wrap
     >
-      <v-card
-        v-if="$vuetify.breakpoint.smAndDown"
-        height="100"
-        class="ma-3 pa-6"
-        outlined
-        tile
-      >
-        b
-      </v-card>
-      <v-card
-        v-if="$vuetify.breakpoint.mdAndUp"
-        max-width="400"
-        height="450"
-        class="ma-3 pa-6"
-        outlined
-        tile
-      >
-        b
-      </v-card>
+      <v-layout wrap>
+        <v-switch 
+          v-model="mode"
+          label="brush"
+        />
+        <v-color-picker 
+          class="ma-2"
+          hide-inputs
+          v-model="brushColor"
+        />
+        <v-slider
+          v-model="brushSize"
+          append-icon="mdi-minus"
+          prepend-icon="vmdi-puls"
+          min=1
+          max=40
+          label="Size"
+        />
+        <v-btn
+          @click="undo"
+        >
+          <v-icon>undo</v-icon>
+        </v-btn>
+        <v-btn
+          @click="redo"
+        >
+          <v-icon>redo</v-icon>
+        </v-btn>
+        <v-btn
+          @click="save"
+        >
+          save
+        </v-btn>
+        <v-btn
+          @click="clearCanvas"
+        >
+          clear
+        </v-btn>
+
+        <a
+          v-if="imageLink"
+          :href="imageLink"
+        >ダウンロード</a>
+      </v-layout>
     </v-flex>
-    <v-btn 
-      type="submit" 
-      dark 
-      color="indigo"
-    >Submit</v-btn>
-    <v-btn :to="{name: 'top'}">Cancel</v-btn>
   </v-layout>
 </v-container>
 </template>
 
 <script>
-import { saveQuestion } from "../lib/api-service";
 import Canvas from "./canvas.vue";
 
 export default {
@@ -77,27 +78,28 @@ export default {
     Canvas,
   },
   data: () => ({
-    mode: '',
-    brushColor: '',
-    defaultMode: 'brush',
-    defaultBrushColor: '#FFFFFF'
+    mode: true,
+    brushColor: '#0000FF',
+    brushSize: 5,
+    imageLink: '',
   }),
   mounted: function() {
     this.init();
   },
   methods: {
-    init: function() {
-      this.mode = this.defaultMode;
-      this.brushColor = this.defaultBrushColor;
+    clearCanvas: function () {
+      this.$refs.Canvas.onClearCanvas();
+      this.init();
     },
-    async saveQuestion() {
-      const body = this.body;
-      const question = {
-        body
-      };
-      await saveQuestion(question)
-      this.$router.push({ name: "top" });
+    undo: function () {
+      this.$refs.Canvas.undo();
     },
+    redo: function () {
+      this.$refs.Canvas.redo();
+    },
+    save: function () {
+      this.imageLink = this.$refs.Canvas.saveImage();
+    }
   }
 };
 </script>
